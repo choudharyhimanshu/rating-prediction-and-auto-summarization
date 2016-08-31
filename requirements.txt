@@ -1,0 +1,6 @@
+nltk>=3.1
+notify2>=0.3
+numpy>=1.11.0
+matplotlib>=1.5.2
+pandas>=0.18.1
+scikit-learn>=0.17.1

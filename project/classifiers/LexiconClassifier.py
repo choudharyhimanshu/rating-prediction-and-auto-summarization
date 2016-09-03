@@ -24,15 +24,15 @@ class LexiconSentimentAnalyzer():
 			if 'JJ' in tagged[i][1] and list(swn.senti_synsets(tagged[i][0],'a')):
 				synset = list(swn.senti_synsets(tagged[i][0],'a'))
 				fraction=1
-			elif 'RB' in tagged[i][1] and list(swn.senti_synsets(tagged[i][0],'r')):
-				synset = list(swn.senti_synsets(tagged[i][0],'r'))
-				fraction=0.7
 			elif 'VB' in tagged[i][1] and list(swn.senti_synsets(tagged[i][0],'v')):
 				synset = list(swn.senti_synsets(tagged[i][0],'v'))
-				fraction=0.5
+				fraction=1
+			# elif 'RB' in tagged[i][1] and list(swn.senti_synsets(tagged[i][0],'r')):
+			# 	synset = list(swn.senti_synsets(tagged[i][0],'r'))
+			# 	fraction=1
 			# elif 'NN' in tagged[i][1] and list(swn.senti_synsets(tagged[i][0],'n')):
 			# 	synset = list(swn.senti_synsets(tagged[i][0],'n'))
-			# 	fraction=0.5
+			# 	fraction=1
 			else:
 				synset = list()
 			pscore=0.0

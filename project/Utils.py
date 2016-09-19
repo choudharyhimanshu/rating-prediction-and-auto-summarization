@@ -10,7 +10,7 @@ import project
 # Globals
 LOCAL_DIR = 'local/'
 FILE_INP = open(LOCAL_DIR+'inp.txt','r')
-FILE_OUT = open(LOCAL_DIR+'out1.txt','a')
+FILE_OUT = open(LOCAL_DIR+'out.txt','a')
 
 # Range for rating from 1 to 5
 DELTA_1 = [-1,-0.03]

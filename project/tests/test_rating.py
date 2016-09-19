@@ -4,11 +4,10 @@
 
 from sklearn import metrics
 import matplotlib.pyplot as plt
-# import notify2
 from ..classifiers.LexiconClassifier import LexiconSentimentAnalyzer
 from .. import Utils
 
-data = Utils.getDataset(500,random=1)
+data = Utils.getDataset(50,random=1)
 lex_analyzer = LexiconSentimentAnalyzer()
 
 X_act = data.index.values
@@ -60,7 +59,3 @@ print("Matched : %f" % (diff_abs.count(0)/len(diff_abs)), file=Utils.FILE_OUT)
 print("With Diff 1 : %f" % (diff_abs.count(1)/len(diff_abs)), file=Utils.FILE_OUT)
 print("With Diff >1 : %f" % ((diff_abs.count(2)+diff_abs.count(3)+diff_abs.count(4))/len(diff_abs)), file=Utils.FILE_OUT)
 print("\n",file=Utils.FILE_OUT)
-
-# notify2.init('NLP')
-# n = notify2.Notification('NLP', 'Lexicon Test Execution completed.')
-# n.show()

@@ -8,18 +8,17 @@ import matplotlib.pyplot as plt
 from ..classifiers.LexiconClassifier import LexiconSentimentAnalyzer
 from .. import Utils
 
-data = Utils.getDataset(50,random=0)
+dataset = Utils.getDataset(500,random=1)
 lex_analyzer = LexiconSentimentAnalyzer()
 
-X_act = data.index.values
-Y_act = data['Score'].tolist()
-X_pred = []
+X_act = dataset.index.values
+Y_act = dataset['Score'].values
 Y_pred = []
 scores = []
 
-for index,row in data.iterrows():
-	score = lex_analyzer.analyzeText(row['Text'])
-	X_pred.append(index)
+for index,row in dataset.iterrows():
+	score = lex_analyzer.analyzeText(Utils.filterStopwords(row.Text.lower()))
+	# score = lex_analyzer.analyzeText(row.Text.lower())	# Without filtering stopwords
 	scores.append(score)
 
 for score in scores:
@@ -36,12 +35,12 @@ plt.hist(Y_pred,alpha=0.5,facecolor='green',label='Predicted')
 plt.legend(loc=2)
 plt.savefig(Utils.LOCAL_DIR+'histo.png')
 
-plt.figure(2)
-plt.plot(X_act,Y_act,'ro',label='Actual')
-plt.plot(X_pred,Y_pred,'go',label='Predicted')
-plt.legend(loc=1)
-plt.ylim(0,7)
-plt.savefig(Utils.LOCAL_DIR+'graph.png')
+# plt.figure(2)
+# plt.plot(X_act,Y_act,'ro',label='Actual')
+# plt.plot(X_act,Y_pred,'go',label='Predicted')
+# plt.legend(loc=1)
+# plt.ylim(0,7)
+# plt.savefig(Utils.LOCAL_DIR+'graph.png')
 
 diff=[]
 diff_abs=[]
@@ -54,6 +53,7 @@ plt.hist(diff,alpha=1)
 plt.title('Difference in Predicted and Actual rating')
 plt.savefig(Utils.LOCAL_DIR+'histoErr.png')
 
+print("# of reviews in the dataset : {:d}".format(len(dataset)),file=Utils.FILE_OUT)
 print("Matched : {:f}".format(float(diff_abs.count(0))/len(diff_abs)), file=Utils.FILE_OUT)
 print("With Diff 1 : {:f}".format(float(diff_abs.count(1))/len(diff_abs)), file=Utils.FILE_OUT)
 print("With Diff >1 : {:f}".format(float(diff_abs.count(2)+diff_abs.count(3)+diff_abs.count(4))/len(diff_abs)), file=Utils.FILE_OUT)

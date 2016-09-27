@@ -2,12 +2,13 @@
 # @home : http://www.himanshuchoudhary.com
 # @git : https://bitbucket.org/himanshuchoudhary/
 
+from __future__ import print_function
 from sklearn import metrics
 import matplotlib.pyplot as plt
 from ..classifiers.LexiconClassifier import LexiconSentimentAnalyzer
 from .. import Utils
 
-data = Utils.getDataset(50,random=1)
+data = Utils.getDataset(50,random=0)
 lex_analyzer = LexiconSentimentAnalyzer()
 
 X_act = data.index.values
@@ -53,9 +54,7 @@ plt.hist(diff,alpha=1)
 plt.title('Difference in Predicted and Actual rating')
 plt.savefig(Utils.LOCAL_DIR+'histoErr.png')
 
-# print(diff,file=Utils.FILE_OUT)
-# print(diff_abs,file=Utils.FILE_OUT)
-print("Matched : %f" % (diff_abs.count(0)/len(diff_abs)), file=Utils.FILE_OUT)
-print("With Diff 1 : %f" % (diff_abs.count(1)/len(diff_abs)), file=Utils.FILE_OUT)
-print("With Diff >1 : %f" % ((diff_abs.count(2)+diff_abs.count(3)+diff_abs.count(4))/len(diff_abs)), file=Utils.FILE_OUT)
+print("Matched : {:f}".format(float(diff_abs.count(0))/len(diff_abs)), file=Utils.FILE_OUT)
+print("With Diff 1 : {:f}".format(float(diff_abs.count(1))/len(diff_abs)), file=Utils.FILE_OUT)
+print("With Diff >1 : {:f}".format(float(diff_abs.count(2)+diff_abs.count(3)+diff_abs.count(4))/len(diff_abs)), file=Utils.FILE_OUT)
 print("\n",file=Utils.FILE_OUT)

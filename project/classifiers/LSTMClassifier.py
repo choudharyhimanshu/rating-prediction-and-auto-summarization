@@ -37,8 +37,8 @@ class LSTMReviewAnalyzer():
         reviews = np.array(reviews)
         ratings = (ratings-3)/2.0
         # sample_weight = np.asarray(map(lambda x : 5/(2*x + 3), ratings))
-        weights = np.asarray(map(self.__weight, ratings))
-        self.model.fit(reviews, ratings, nb_epoch=100, batch_size=32,sample_weight=weights)
+        # weights = np.asarray(map(self.__weight, ratings))
+        self.model.fit(reviews, ratings, nb_epoch=30, batch_size=32)
 
     def summary(self):
         return self.model.summary()

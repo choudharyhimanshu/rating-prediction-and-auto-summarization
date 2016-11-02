@@ -12,7 +12,7 @@ from .stopwords import STOPWORDS
 # Globals
 LOCAL_DIR = 'local/'
 FILE_INP = open(LOCAL_DIR+'inp.txt','r')
-FILE_OUT = open(LOCAL_DIR+'out.txt','a')
+FILE_OUT = open(LOCAL_DIR+'out_foo.txt','a')
 
 # Range for rating from 1 to 5
 DELTA_1 = [-1,-0.03]
@@ -34,7 +34,7 @@ def scaleSentimentScoreToRating(value):
 
 def getDataset(nrows=100, random=0):
     dataset_dir = os.path.join(os.path.dirname(project.__file__), 'dataset')
-    dataset_file = os.path.join(dataset_dir, 'Reviews.csv')
+    dataset_file = os.path.join(dataset_dir, 'Reviews_uniform_25000.csv')
     if nrows == -1:
         return read_csv(dataset_file,header=0,index_col=0,usecols=['Id','Score','Text'],encoding='utf-8')
     if random:

@@ -21,3 +21,4 @@ dist
 *.tmp*
 .idea/
 .ipynb_checkpoints/
+project/output
